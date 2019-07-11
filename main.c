@@ -128,41 +128,5 @@ static inline F64x2 MSub(F64x2 acc, ae_f32x2 x, ae_f32x2 y)
 
 int main()
 {
-	float x = 0.9;
-	float y = 4;
-	float z = 0.8;
-	float k = 0;
-	ae_f32x2 a = floatToF32x2(x, y);
-	ae_f32x2 b = floatToF32x2(z, k);
-	F64x2 acc;
-//	acc.h = 435434596830345436LL;
-//	acc.l = 9234589449396754LL;
-//			putF64ToF64x2(
-//			AE_MOVF64_FROMF32X2(floatToQ31(0, x)),
-//			AE_MOVF64_FROMF32X2(floatToQ31(0, z))
-//			);
-
-	printf("x = %f\n", Q31ToFloat_h(a));
-	printf("y = %f\n", Q31ToFloat_l(a));
-	printf("z = %f\n", Q31ToFloat_h(b));
-	printf("k = %f\n", Q31ToFloat_l(b));
-
-	printf("Add1 = %f\n", Q31ToFloat_h(Add(a, b)));
-	printf("Add2 = %f\n", Q31ToFloat_l(Add(a, b)));
-
-	printf("Sub1 = %f\n", Q31ToFloat_h(Sub(a, b)));
-	printf("Sub2 = %f\n", Q31ToFloat_l(Sub(a, b)));
-
-	printf("Mul1 = %f\n", Q31ToFloat_h(roundF64x2ToF32x2(Mul(a, b))));
-	printf("Mul2 = %f\n", Q31ToFloat_l(roundF64x2ToF32x2(Mul(a, b))));
-	ae_f32x2 q = roundF64x2ToF32x2(Mul(a, b));
-	ae_f16x4 w = roundF64x2ToF16x4(Mul(a, b));
-
-//	printf("Mac1 = %f\n", Q31ToFloat_h(roundF64x2ToF32x2(Mac(acc, a, b))));
-//	printf("Mac2 = %f\n", Q31ToFloat_l(roundF64x2ToF32x2(Mac(acc, a, b))));
-//
-//	printf("MSub1 = %f\n", Q31ToFloat_h(roundF64x2ToF32x2(MSub(acc, a, b))));
-//	printf("MSub2 = %f\n", Q31ToFloat_l(roundF64x2ToF32x2(MSub(acc, a, b))));
-
 	return 0;
 }
