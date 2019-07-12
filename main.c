@@ -126,6 +126,16 @@ static inline F64x2 MSub(F64x2 acc, ae_f32x2 x, ae_f32x2 y)
 	return acc;
 }
 
+static inline ae_f64 LeftShiftA(ae_f64 x, uint8_t shift)
+{
+	return AE_SLAA64S(x, shift);
+}
+
+static inline ae_f64 RightShiftA(ae_f64 x, uint8_t shift)
+{
+	return AE_SRAA64(x, shift);
+}
+
 int main()
 {
 	return 0;
