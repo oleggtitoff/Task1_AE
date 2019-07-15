@@ -136,6 +136,11 @@ static inline ae_f64 RightShiftA(ae_f64 x, uint8_t shift)
 	return AE_SRAA64(x, shift);
 }
 
+static inline ae_f64 RightShiftL(ae_f64 x, uint8_t shift)
+{
+	return AE_SRLA64(x, shift);
+}
+
 int main()
 {
 	return 0;
