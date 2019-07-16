@@ -1,31 +1,20 @@
-**** Incremental Build [Mon, 15 Jul 2019 16:36:03] ****
+**** Incremental Build [Tue, 16 Jul 2019 13:49:31] ****
  Project: Task1_AE
  Configuration: hifi3_bd5
  Build Target: Release
 ********************************
 
 "C:\\usr\\xtensa\\XtDevTools\\install\\tools\\RI-2019.1-win32\\XtensaTools\\bin\\xt-xcc" -c -g -O2 -fmessage-length=0 -DPROC_hifi3_bd5 -DCONFIG_hifi3_bd5 --xtensa-system=C:/usr/xtensa/XtDevTools/install/builds/RI-2019.1-win32/hifi3_bd5/config --xtensa-core=hifi3_bd5 --xtensa-params= "\"C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/main.c\"" -o "\"C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/main.o\"" 
-Time taken: 1489 ms 
+C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/main.c: In function 'Div':
+C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/main.c:164: error: 'isDone' undeclared (first use in this function)
+C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/main.c:164: error: (Each undeclared identifier is reported only once
+C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/main.c:164: error: for each function it appears in.)
+C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/main.c:174: error: too few arguments to function 'RightShiftA'
+C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/main.c:175: error: perhaps a TIE conversion macro (from F64x2 to ae_f32x2) is missing
+C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/main.c:175: error: incompatible types in assignment
+C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/main.c:177: error: cannot use xtbool2, xtbool4, xtbool8, or xtbool16 types here
+Time taken: 546 ms 
 
-"C:\\usr\\xtensa\\XtDevTools\\install\\tools\\RI-2019.1-win32\\XtensaTools\\bin\\xt-xc++" -Wl,@C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/objfiles.list -o C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/Task1_AE.minsize -mlsp=sim -Wl,-r -nostdlib --xtensa-system=C:/usr/xtensa/XtDevTools/install/builds/RI-2019.1-win32/hifi3_bd5/config --xtensa-core=hifi3_bd5 --xtensa-params= 
-Time taken: 494 ms 
-
-"C:\\usr\\xtensa\\XtDevTools\\install\\tools\\RI-2019.1-win32\\XtensaTools\\bin\\xt-xc++" -Wl,@C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/objfiles.list -o C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/Task1_AE -mlsp=sim --xtensa-system=C:/usr/xtensa/XtDevTools/install/builds/RI-2019.1-win32/hifi3_bd5/config --xtensa-core=hifi3_bd5 --xtensa-params= 
-Time taken: 574 ms 
-
-******* Code size summary *****
-
-"C:\\usr\\xtensa\\XtDevTools\\install\\tools\\RI-2019.1-win32\\XtensaTools\\bin\\xt-size" -C C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/Task1_AE 
-TYPE   	   text	 rodata	   data	    bss	    dec    hex	filename
-code   	   1460	      0	      0	      0	   1460	    5b4	C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/Task1_AE
-literal	    184	      0	      0	      0	    184	     b8	C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/Task1_AE
-other  	    196	     32	    420	    296	    944	    3b0	C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/Task1_AE
-Total  	   1840	     32	    420	    296	   2588	    a1c	C:/usr/xtensa/Xplorer-8.0.10-workspaces/workspace/Task1_AE/bin/hifi3_bd5/Release/Task1_AE
-
-Time taken: 283 ms 
-
-******* ************** *****
-
-Build successful !!
-Total time taken: 2.936 secs
-**** Build Finished [Mon, 15 Jul 2019 16:36:06] ****
+Build error encountered... cannot continue further.
+Total time taken: 1.078 secs
+**** Build Finished [Tue, 16 Jul 2019 13:49:32] ****
