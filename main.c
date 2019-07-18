@@ -191,8 +191,9 @@ ALWAYS_INLINE ae_f32x2 Div(ae_f32x2 x, ae_f32x2 y)
 
 	xtbool2 resultIsNegative = AE_LT32(AE_XOR32(x, y), AE_ZERO32());
 	xtbool2 precisionAchieved;
-	xtbool2	isMaxValue;
-	xtbool2 isMinValue;
+
+	//flags for mid value:
+	xtbool2	isLimitValue;
 	xtbool2 ifLessThanX;
 	xtbool2 ifBiggerThanX;
 
@@ -223,33 +224,26 @@ ALWAYS_INLINE ae_f32x2 Div(ae_f32x2 x, ae_f32x2 y)
 		midY = Mul(mid, y);		//mid * y
 
 		precisionAchieved = AE_LE32(AE_ABS32S(Sub(midY, x)), precision);		//if current precision is good
-		isMaxValue = AE_EQ32(midY, AE_MOVDA32X2(INT32_MAX, INT32_MAX));			//if midY value is MAX, probably saturated
-		isMinValue = AE_EQ32(midY, AE_MOVDA32X2(INT32_MIN, INT32_MIN));			//if midY value is MIN
+		isLimitValue = AE_LE32(Sub(INT32_MAX, AE_ABS32S(mid)), precision);			//if mid value is close to MAX or MIN
 
 		//update isCalculated
-		//isCalculated = isCalculated | (precisionAchieved & !isMacValue & !isMinValue)
+		//isCalculated = isCalculated | precisionAchieved | isLimitValue
 		isCalculated = xtbool_join_xtbool2(
-							XT_ORB(
-									xtbool2_extract_0(isCalculated),
-									XT_AND(
-											XT_AND(
-													xtbool2_extract_0(precisionAchieved),
-													XT_XOR(xtbool2_extract_0(isMaxValue), 1)
+											XT_ORB(
+													xtbool2_extract_0(isCalculated),
+													XT_ORB(
+															xtbool2_extract_0(precisionAchieved),
+															xtbool2_extract_0(isLimitValue)
+															)
 													),
-											XT_XOR(xtbool2_extract_0(isMinValue), 1)
-											)
-									),
-							XT_ORB(
-									xtbool2_extract_0(isCalculated),
-									XT_AND(
-											XT_AND(
-													xtbool2_extract_1(precisionAchieved),
-													XT_XOR(xtbool2_extract_1(isMaxValue), 1)
-													),
-											XT_XOR(xtbool2_extract_1(isMinValue), 1)
-											)
-									)
-							);
+											XT_ORB(
+													xtbool2_extract_1(isCalculated),
+													XT_ORB(
+															xtbool2_extract_1(precisionAchieved),
+															xtbool2_extract_1(isLimitValue)
+															)
+													)
+											);
 
 		if ((int8_t)isCalculated == 3)
 		{
@@ -267,25 +261,25 @@ ALWAYS_INLINE ae_f32x2 Div(ae_f32x2 x, ae_f32x2 y)
 
 int main()
 {
-	float x1 = 0.9999994;
-	float y1 = -0.002456;
-	float x2 = -0.7999994;
-	float y2 = 1;//-0.002456;
+	float x1 = -0.9999994;
+	float y1 = 0;//-0.502456;
+	float x2 = 0;//-0.7999994;
+	float y2 = 0.002456;
 
 	ae_f32x2 z = floatToF32x2(x1, x2);
 	ae_f32x2 c = floatToF32x2(y1, y2);
 	//ae_f32x2 k = AE_MOVDA32X2(0x8ffffe69, 0);
-	//printf("k_ = %f\n", Q31ToFloat_h(k));
-	//printf("x1_x = %x\n", AE_MOVAD32_H(AE_MOVINT32X2_FROMF32X2(z)));
+//	printf("x = %f\n", Q31ToFloat_h(AE_MOVDA32X2(0x1ccccccc, 0x1ccccccc)));
+//	printf("y = %f\n", Q31ToFloat_h(AE_MOVDA32X2(678735, 678735)));
+
 	printf("x1_ = %f\n", Q31ToFloat_h(z));
 	printf("y1_ = %f\n", Q31ToFloat_h(c));
 	printf("x2_ = %f\n", Q31ToFloat_l(z));
 	printf("y2_ = %f\n", Q31ToFloat_l(c));
-
+	//ae_f32x2 tmp = Div(AE_MOVDA32X2(0x1ccccccc, 0x1ccccccc), AE_MOVDA32X2(678735, 678735));
 	ae_f32x2 tmp = Div(z, c);
-	//printf("Div fixed = %d\n", Div(z, c));
 	printf("Div float = %f\n", Q31ToFloat_h(tmp));
-	printf("Div float = %f\n", Q31ToFloat_l(Div(z, c)));
+	printf("Div float = %f\n", Q31ToFloat_l(tmp));
 
 	return 0;
 }
